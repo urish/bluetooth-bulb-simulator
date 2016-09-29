@@ -3,6 +3,7 @@
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "build": "ionic-app-scripts build",
     "watch": "ionic-app-scripts watch",
@@ -29,6 +30,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
+    "cordova-plugin-bluetoothle",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []

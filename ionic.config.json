@@ -1,6 +1,6 @@
 {
   "name": "bluetooth-bulb-simulator",
-  "app_id": "",
+  "app_id": "org.urish.bulbsimulator",
   "v2": true,
   "typescript": true
 }
