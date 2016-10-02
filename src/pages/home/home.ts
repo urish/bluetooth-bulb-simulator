@@ -47,6 +47,22 @@ export class HomePage {
           }
         ]
       });
+
+      bluetoothle.addService(result => console.log('ok', result), err => console.log('failed!', err), {
+        service: 'ffe0',
+        characteristics: [
+          {
+            uuid: 'ffe4',
+            permissions: {
+              read: true
+            },
+            properties: {
+              notify: true
+            }
+          }
+        ]
+      });
+
       bluetoothle.startAdvertising(result => console.log('advertising', result), err => console.error('advertising failed', err), {
         services: ['ffe5'],
         service: 'ffe5',
@@ -58,7 +74,7 @@ export class HomePage {
       });
     }
     if (event.status === 'writeRequested' && event.characteristic.toLowerCase() === 'ffe9') {
-      this.onWrite(atob(event.value));
+      this.onWrite(atob(event.value), event.address);
       bluetoothle.respond(result => console.log('respond', result), err => console.error('respond', err), {
         requestId: event.requestId,
         value: event.value,
@@ -67,7 +83,7 @@ export class HomePage {
     }
   }
 
-  onWrite(value: string) {
+  onWrite(value: string, address: string) {
     if (value.charCodeAt(0) === 0x56 && value.length === 7) {
       if (value.charCodeAt(5) === 0xf0) {
         // RGB Mode
@@ -81,6 +97,30 @@ export class HomePage {
       } else {
         // TODO Warm white mode
       }
+    }
+    if (value.charCodeAt(0) === 0xef && value.charCodeAt(1) === 0x01 && value.charCodeAt(2) === 0x77) {
+      // Read current state command
+      console.log('Read current state');
+      bluetoothle.notify(
+        result => console.log('notify result', result),
+        error => console.error('notify failed', error), {
+          address,
+          service: "ffe0",
+          characteristic: "ffe4",
+          value: bluetoothle.bytesToEncodedString([0x66, 0x15, 0x23, 0x4A, 0x41, 0x02, 0xFF, 0x00, 0x00, 0x00, 0x08, 0x99])
+        });
+    }
+    if (value.charCodeAt(0) === 0x12) {
+      // 12 1a 1b 21 - Read current time command
+      console.log('Read current Time');
+      bluetoothle.notify(
+        result => console.log('notify result', result),
+        error => console.error('notify failed', error), {
+          address,
+          service: "ffe0",
+          characteristic: "ffe4",
+          value: bluetoothle.bytesToEncodedString([0x13, 0x14, 0x00, 0x01, 0x01, 0x00, 0x00, 0x12, 0x01, 0x00, 0x31])
+        });
     }
   }
 
