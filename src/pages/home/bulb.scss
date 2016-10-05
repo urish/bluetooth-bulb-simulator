@@ -1,4 +1,29 @@
-// TODO implement preset 25
+@keyframes bulb-preset-25 {
+  0% {
+    fill: red;
+  }
+  14% {
+    fill: yellow;
+  }
+  29% {
+    fill: green;
+  }
+  43% {
+    fill: cyan;
+  }
+  57% {
+    fill: blue;
+  }
+  71% {
+    fill: purple;
+  }
+  86% {
+    fill: white;
+  }
+  100% {
+    fill: red;
+  }
+}
 
 @keyframes bulb-preset-26 {
   0% {

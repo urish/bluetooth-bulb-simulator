@@ -24,8 +24,12 @@ export class BulbComponent {
   @Input() presetSpeed: number;
 
   get animation() {
+    let speed = this.presetSpeed / 5.;
+    if (this.preset === 0x25) {
+      speed *= 7;
+    }
     if (this.preset) {
-      return `bulb-preset-${this.preset.toString(16)} ${this.presetSpeed / 5.}s linear infinite`;
+      return `bulb-preset-${this.preset.toString(16)} ${speed}s linear infinite`;
     } else {
       return '';
     }
