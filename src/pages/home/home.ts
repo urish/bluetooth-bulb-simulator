@@ -131,19 +131,21 @@ export class HomePage {
   }
 
   onWrite(value: string, address: string) {
-    if (value.charCodeAt(0) === 0x56 && value.length === 7) {
+    if ((value.charCodeAt(0) === 0x56 || value.charCodeAt(0) === 0x78) && value.length === 7) {
       if (value.charCodeAt(5) === 0xf0) {
         this.zone.run(() => {
           this.mode = BulbMode.RGB;
           this.redValue = value.charCodeAt(1);
           this.greenValue = value.charCodeAt(2);
           this.blueValue = value.charCodeAt(3);
+          this.presetNumber = null;
           this.on = true;
         });
       } else if (value.charCodeAt(5) == 0x0f) {
         this.zone.run(() => {
           this.mode = BulbMode.WHITE;
           this.whiteValue = value.charCodeAt(4);
+          this.presetNumber = null;
           this.on = true;
         });
       }
