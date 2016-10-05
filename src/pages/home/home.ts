@@ -17,12 +17,19 @@ const DEVICE_VERSION = 0x8;
 })
 export class HomePage {
   private mode: BulbMode = BulbMode.WHITE;
+
+  // Parameters for WHITE mode
   private whiteValue: number = 0xff;
+
+  // Parameters for RGB mode
   private redValue: number;
   private greenValue: number;
   private blueValue: number;
-  private presetNumber: number; // 0x25 to 0x38
-  private presetSpeed: number; // each unit is about 200ms
+
+  // Parameters for PRESET mode
+  presetNumber: number; // 0x25 to 0x38
+  presetSpeed: number; // each unit is about 200ms
+
   on: boolean = false;
 
   constructor(public navCtrl: NavController, private zone: NgZone) {
