@@ -36,8 +36,7 @@ export class HomePage {
     document.addEventListener('deviceready', () => {
       if (typeof bluetoothle !== 'undefined') {
         bluetoothle.initialize(result => this.onBleReady(result), {
-          request: true,
-          restoreKey: 'magicblue-simulator'
+          request: true
         });
       }
     }, false);
@@ -56,8 +55,7 @@ export class HomePage {
   onBleReady(result) {
     console.log('onBleReady', result);
     bluetoothle.initializePeripheral(status => this.bleCallback(status), err => this.onError(err), {
-      request: true,
-      restoreKey: 'magicblue-simulator'
+      request: true
     });
   }
 
@@ -73,7 +71,8 @@ export class HomePage {
               write: true
             },
             properties: {
-              writeNoResponse: true
+              writeNoResponse: true,
+              writeWithoutResponse: true
             }
           }
         ]
@@ -97,7 +96,7 @@ export class HomePage {
       bluetoothle.startAdvertising(result => console.log('advertising', result), err => console.error('advertising failed', err), {
         services: ['ffe5'],
         service: 'ffe5',
-        name: 'Hello World',
+        name: 'LEDBLE-SIM',
         mode: 'lowLatency',
         connectable: true,
         timeout: 500,
