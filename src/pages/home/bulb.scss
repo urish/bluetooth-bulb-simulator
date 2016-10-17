@@ -1,3 +1,60 @@
+@mixin strobe-fade-preset($preset-number, $color) {
+  @at-root {
+    @keyframes bulb-preset-#{$preset-number} {
+      0% {
+        fill: $color;
+      }
+      50% {
+        fill: black;
+      }
+      100% {
+        fill: $color;
+      }
+    }
+  }
+}
+
+@mixin strobe-cross-fade-preset($preset-number, $color1, $color2) {
+  @at-root {
+    @keyframes bulb-preset-#{$preset-number} {
+      0% {
+        fill: $color1;
+      }
+      25% {
+        fill: black;
+      }
+      50% {
+        fill: $color2;
+      }
+      75% {
+        fill: black;
+      }
+      100% {
+        fill: $color1;
+      }
+    }
+  }
+}
+
+@mixin strobe-flash-preset($preset-number, $color) {
+  @at-root {
+    @keyframes bulb-preset-#{$preset-number} {
+      0% {
+        fill: $color;
+      }
+      2% {
+        fill: black;
+      }
+      98% {
+        fill: black;
+      }
+      100% {
+        fill: $color;
+      }
+    }
+  }
+}
+
 // Seven color cross fade
 @keyframes bulb-preset-25 {
   0% {
@@ -26,51 +83,17 @@
   }
 }
 
-@mixin strobe-fade-preset($preset-number, $color1, $color2) {
-  @at-root {
-    @keyframes bulb-preset-#{$preset-number} {
-      0% {
-        fill: $color1;
-      }
-      50% {
-        fill: $color2;
-      }
-      100% {
-        fill: $color1;
-      }
-    }
-  }
-}
+@include strobe-fade-preset($preset-number: '26', $color: red);
+@include strobe-fade-preset($preset-number: '27', $color: green);
+@include strobe-fade-preset($preset-number: '28', $color: blue);
+@include strobe-fade-preset($preset-number: '29', $color: yellow);
+@include strobe-fade-preset($preset-number: '2a', $color: cyan);
+@include strobe-fade-preset($preset-number: '2b', $color: purple);
+@include strobe-fade-preset($preset-number: '2c', $color: white);
 
-@include strobe-fade-preset($preset-number: '26', $color1: black, $color2: red);
-@include strobe-fade-preset($preset-number: '27', $color1: black, $color2: green);
-@include strobe-fade-preset($preset-number: '28', $color1: black, $color2: blue);
-@include strobe-fade-preset($preset-number: '29', $color1: black, $color2: yellow);
-@include strobe-fade-preset($preset-number: '2a', $color1: black, $color2: cyan);
-@include strobe-fade-preset($preset-number: '2b', $color1: black, $color2: purple);
-@include strobe-fade-preset($preset-number: '2c', $color1: black, $color2: white);
-@include strobe-fade-preset($preset-number: '2d', $color1: red, $color2: green);
-@include strobe-fade-preset($preset-number: '2e', $color1: red, $color2: blue);
-@include strobe-fade-preset($preset-number: '2f', $color1: green, $color2: blue);
-
-@mixin strobe-flash-preset($preset-number, $color) {
-  @at-root {
-    @keyframes bulb-preset-#{$preset-number} {
-      0% {
-        fill: $color;
-      }
-      2% {
-        fill: black;
-      }
-      98% {
-        fill: black;
-      }
-      100% {
-        fill: $color;
-      }
-    }
-  }
-}
+@include strobe-cross-fade-preset($preset-number: '2d', $color1: red, $color2: green);
+@include strobe-cross-fade-preset($preset-number: '2e', $color1: red, $color2: blue);
+@include strobe-cross-fade-preset($preset-number: '2f', $color1: green, $color2: blue);
 
 // Seven color strobe flash
 @keyframes bulb-preset-30 {

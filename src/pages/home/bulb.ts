@@ -25,9 +25,16 @@ export class BulbComponent {
 
   get animation() {
     let speed = this.presetSpeed / 5.;
-    if (this.preset === 0x25 || this.preset === 0x30) {
-      speed *= 7;
+    switch (this.preset) {
+      case 0x25: case 0x30: case 0x38: // 7-color animations
+        speed *= 7;
+        break;
+
+      case 0x2d: case 0x2e: case 0x2f: // 2-color animations
+        speed *= 2;
+        break;
     }
+
     if (this.preset) {
       return `bulb-preset-${this.preset.toString(16)} ${speed}s linear infinite`;
     } else {
