@@ -1,3 +1,11 @@
+light-bulb {
+  display: flex;
+}
+
+light-bulb svg {
+  flex: 1;
+}
+
 @mixin strobe-fade-preset($preset-number, $color) {
   @at-root {
     @keyframes bulb-preset-#{$preset-number} {

@@ -3,3 +3,18 @@
   color: white;
 }
 
+.page-home .scroll-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.page-home .bulb-container {
+  display: flex;
+  min-height: 200px;
+  flex: 1;
+}
+
+.page-home light-bulb {
+  flex: 1;
+}
