@@ -25,7 +25,7 @@ export class BulbComponent {
 
   get animation() {
     let speed = this.presetSpeed / 5.;
-    if (this.preset === 0x25) {
+    if (this.preset === 0x25 || this.preset === 0x30) {
       speed *= 7;
     }
     if (this.preset) {

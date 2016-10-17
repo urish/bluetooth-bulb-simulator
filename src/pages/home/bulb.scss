@@ -1,23 +1,24 @@
+// Seven color cross fade
 @keyframes bulb-preset-25 {
   0% {
     fill: red;
   }
-  14% {
+  14.286% {
     fill: yellow;
   }
-  29% {
+  28.571% {
     fill: green;
   }
-  43% {
+  42.857% {
     fill: cyan;
   }
-  57% {
+  57.143% {
     fill: blue;
   }
-  71% {
+  71.429% {
     fill: purple;
   }
-  86% {
+  85.714% {
     fill: white;
   }
   100% {
@@ -25,124 +26,196 @@
   }
 }
 
-@keyframes bulb-preset-26 {
-  0% {
-    fill: black;
+@mixin strobe-fade-preset($preset-number, $color1, $color2) {
+  @at-root {
+    @keyframes bulb-preset-#{$preset-number} {
+      0% {
+        fill: $color1;
+      }
+      50% {
+        fill: $color2;
+      }
+      100% {
+        fill: $color1;
+      }
+    }
   }
-  50% {
+}
+
+@include strobe-fade-preset($preset-number: '26', $color1: black, $color2: red);
+@include strobe-fade-preset($preset-number: '27', $color1: black, $color2: green);
+@include strobe-fade-preset($preset-number: '28', $color1: black, $color2: blue);
+@include strobe-fade-preset($preset-number: '29', $color1: black, $color2: yellow);
+@include strobe-fade-preset($preset-number: '2a', $color1: black, $color2: cyan);
+@include strobe-fade-preset($preset-number: '2b', $color1: black, $color2: purple);
+@include strobe-fade-preset($preset-number: '2c', $color1: black, $color2: white);
+@include strobe-fade-preset($preset-number: '2d', $color1: red, $color2: green);
+@include strobe-fade-preset($preset-number: '2e', $color1: red, $color2: blue);
+@include strobe-fade-preset($preset-number: '2f', $color1: green, $color2: blue);
+
+@mixin strobe-flash-preset($preset-number, $color) {
+  @at-root {
+    @keyframes bulb-preset-#{$preset-number} {
+      0% {
+        fill: $color;
+      }
+      2% {
+        fill: black;
+      }
+      98% {
+        fill: black;
+      }
+      100% {
+        fill: $color;
+      }
+    }
+  }
+}
+
+// Seven color strobe flash
+@keyframes bulb-preset-30 {
+  0% {
     fill: red;
   }
-  100% {
+  0.999% {
+    fill: red;
+  }
+  1% {
     fill: black;
   }
-}
-
-@keyframes bulb-preset-27 {
-  0% {
+  14.285% {
     fill: black;
   }
-  50% {
-    fill: green;
-  }
-  100% {
-    fill: black;
-  }
-}
-
-@keyframes bulb-preset-28 {
-  0% {
-    fill: black;
-  }
-  50% {
-    fill: blue;
-  }
-  100% {
-    fill: black;
-  }
-}
-
-@keyframes bulb-preset-29 {
-  0% {
-    fill: black;
-  }
-  50% {
+  14.286% {
     fill: yellow;
   }
-  100% {
+  15.285% {
+    fill: yellow;
+  }
+  15.286% {
     fill: black;
   }
-}
-
-@keyframes bulb-preset-2a {
-  0% {
+  28.570% {
     fill: black;
   }
-  50% {
+  28.571% {
+    fill: green;
+  }
+  29.570% {
+    fill: green;
+  }
+  29.571% {
+    fill: black;
+  }
+  42.856% {
+    fill: black;
+  }
+  42.857% {
     fill: cyan;
   }
-  100% {
+  43.856% {
+    fill: cyan;
+  }
+  43.857% {
     fill: black;
   }
-}
-
-@keyframes bulb-preset-2b {
-  0% {
+  57.142% {
     fill: black;
   }
-  50% {
+  57.143% {
+    fill: blue;
+  }
+  58.142% {
+    fill: blue;
+  }
+  58.143% {
+    fill: black;
+  }
+  71.428% {
+    fill: black;
+  }
+  71.429% {
     fill: purple;
   }
-  100% {
+  72.428% {
+    fill: purple;
+  }
+  72.429% {
     fill: black;
+  }
+  85.713% {
+    fill: black;
+  }
+  85.714% {
+    fill: white;
+  }
+  86.713% {
+    fill: white;
+  }
+  86.714% {
+    fill: black;
+  }
+  99.999% {
+    fill: black;
+  }
+  100% {
+    fill: red;
   }
 }
 
-@keyframes bulb-preset-2c {
+@include strobe-flash-preset($preset-number: '31', $color: red);
+@include strobe-flash-preset($preset-number: '32', $color: green);
+@include strobe-flash-preset($preset-number: '33', $color: blue);
+@include strobe-flash-preset($preset-number: '34', $color: yellow);
+@include strobe-flash-preset($preset-number: '35', $color: cyan);
+@include strobe-flash-preset($preset-number: '36', $color: purple);
+@include strobe-flash-preset($preset-number: '37', $color: white);
+
+// Seven color jumping change
+@keyframes bulb-preset-38 {
   0% {
-    fill: black;
+    fill: red;
   }
-  50% {
+  14.285% {
+    fill: red;
+  }
+  14.286% {
+    fill: yellow;
+  }
+  28.570% {
+    fill: yellow;
+  }
+  28.571% {
+    fill: green;
+  }
+  42.856% {
+    fill: green;
+  }
+  42.857% {
+    fill: cyan;
+  }
+  57.142% {
+    fill: cyan;
+  }
+  57.143% {
+    fill: blue;
+  }
+  71.428% {
+    fill: blue;
+  }
+  71.429% {
+    fill: purple;
+  }
+  85.713% {
+    fill: purple;
+  }
+  85.714% {
+    fill: white;
+  }
+  99.999% {
     fill: white;
   }
   100% {
-    fill: black;
-  }
-}
-
-@keyframes bulb-preset-2d {
-  0% {
-    fill: red;
-  }
-  50% {
-    fill: green;
-  }
-  100% {
     fill: red;
   }
 }
-
-@keyframes bulb-preset-2e {
-  0% {
-    fill: red;
-  }
-  50% {
-    fill: blue;
-  }
-  100% {
-    fill: red;
-  }
-}
-
-@keyframes bulb-preset-2f {
-  0% {
-    fill: green;
-  }
-  50% {
-    fill: blue;
-  }
-  100% {
-    fill: green;
-  }
-}
-
-// TODO implement presets 30-38 (strobe flash)
