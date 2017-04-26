@@ -30,7 +30,7 @@ export class HomePage {
   presetNumber: number; // 0x25 to 0x38
   presetSpeed: number; // each unit is about 200ms
 
-  on: boolean = false;
+  on = true;
 
   constructor(public navCtrl: NavController, private zone: NgZone) {
     document.addEventListener('deviceready', () => {
@@ -167,6 +167,11 @@ export class HomePage {
           characteristic: "ffe4",
           value: bluetoothle.bytesToEncodedString(this.bulbStateBytes())
         });
+    }
+    if (value.charCodeAt(0) === 0xcc && value.charCodeAt(2) === 0x33) {
+      this.zone.run(() => {
+        this.on = value.charCodeAt(1) === 0x23;
+      });
     }
     if (value.charCodeAt(0) === 0x12) {
       // 12 1a 1b 21 - Read current time command

@@ -6,8 +6,8 @@
 
 <ion-content padding class="page-home">
   <h2>Bluetooth Bulb Simulator</h2>
-  Color: {{color}}
+  Color: {{color}}, Power: {{on ? 'on': 'off'}}
   <div class="bulb-container">
-      <light-bulb [color]="color" [preset]="presetNumber" [presetSpeed]="presetSpeed"></light-bulb>
+      <light-bulb *ngIf="on" [color]="color" [preset]="presetNumber" [presetSpeed]="presetSpeed"></light-bulb>
   </div>
 </ion-content>
