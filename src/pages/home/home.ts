@@ -63,6 +63,21 @@ export class HomePage {
     console.log('BLE callback', event);
     if (event.status === 'enabled') {
       bluetoothle.addService(result => console.log('ok', result), err => console.log('failed!', err), {
+        service: 'ffe0',
+        characteristics: [
+          {
+            uuid: 'ffe4',
+            permissions: {
+              read: true
+            },
+            properties: {
+              notify: true
+            }
+          }
+        ]
+      });
+
+      bluetoothle.addService(result => console.log('ok', result), err => console.log('failed!', err), {
         service: 'ffe5',
         characteristics: [
           {
@@ -78,28 +93,13 @@ export class HomePage {
         ]
       });
 
-      bluetoothle.addService(result => console.log('ok', result), err => console.log('failed!', err), {
-        service: 'ffe0',
-        characteristics: [
-          {
-            uuid: 'ffe4',
-            permissions: {
-              read: true
-            },
-            properties: {
-              notify: true
-            }
-          }
-        ]
-      });
-
       bluetoothle.startAdvertising(result => console.log('advertising', result), err => console.error('advertising failed', err), {
         services: ['ffe5'],
         service: 'ffe5',
         name: 'LEDBLE-SIM',
         mode: 'lowLatency',
         connectable: true,
-        timeout: 500,
+        timeout: 180000,
         powerLevel: 'high'
       });
     }
